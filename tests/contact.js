@@ -1,7 +1,4 @@
-const { addContact, addContacts } = require( '../src/contact' )
+const { addContact, addContacts, contactStorage } = require( '../src/contact' )
 
-const testContactStorage = [];
-addContact( 'blah', 'meh', 'me@me.com', testContactStorage )
-addContact( '44', 'meh', 'me@me.com', testContactStorage )
-
-console.assert( testContactStorage.length > 0, 'addContact did not add a contact to your array' )
+addContacts( [{first_name:44, last_name:'meh', email:'me@me.com'}, {first_name:'me', last_name:'meh', email:'me@me.com'}] )
+console.assert( contactStorage.length > 0, 'addContact did not add a contact to your array' );
