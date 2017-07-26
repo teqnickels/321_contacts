@@ -5,8 +5,9 @@ let contactStorage = []
 let errorArr =[]
 
 const addContact = function(firstName, lastName, email) {
+
   if(typeof firstName !== 'string' || typeof lastName !== 'string') {
-    throw {first_name:firstName, last_name:lastName, msg:"Bad Entry"}
+    throw { first_name:firstName, last_name:lastName, msg:"Bad Entry" }
   }
     var newContact = {  first_name:firstName, last_name:lastName, email:email }
     contactStorage.push(  newContact  )
