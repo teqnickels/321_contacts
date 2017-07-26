@@ -1,33 +1,29 @@
 
 require('console.table');
 
-let contactStorage = [] // here is where you'll store your contacts
+let contactStorage = []
+let errorArr =[]
 
-const addContact = function(firstName, lastName, email, array) {
+const addContact = function(firstName, lastName, email) {
   if(typeof firstName !== 'string' || typeof lastName !== 'string') {
-    throw new Error('Enter first name and last name only');
+    throw {first_name:firstName, last_name:lastName, msg:"Bad Entry"}
   }
     var newContact = {  first_name:firstName, last_name:lastName, email:email }
-    array.push(  newContact  )
+    contactStorage.push(  newContact  )
 }
 
-try {
-  addContact( 'deb', 'mcewen', 'me@me.com', contactStorage )
-  // addContact( 33,'da', 'u@me.com', contactStorage )
-  addContact( 'ryan', 'better', 'rb@me.com', contactStorage )
-  addContact( 'rudy', 'jefferson', 'rj@me.com', contactStorage )
-  addContact( 'rudy', 'jefferson', 'rj@me.com', contactStorage )
-console.log( 'contacts', contactStorage);
-}
-catch(error) {
-  console.log(error.message, error.name);
-}
+
 
 const addContacts = function(arr) {
-for (var i = 0; i < arr.length; i++) {
-  addContact( arr[i].first_name, arr[i].last_name, arr[i].email)
+  for (var i = 0; i < arr.length; i++) {
+    try {
+      addContact( arr[i].first_name, arr[i].last_name, arr[i].email)
+    }
+    catch(error) {
+      errorArr.push(error)
+      console.log(errorArr);
+    }
   }
-  // console.log('the arr', contactStorage);
 }
 
 const printContacts = function() {
@@ -67,7 +63,7 @@ const printContacts = function() {
 
 addContacts([
   {
-    "first_name": "Tanny",
+    "first_name": 44,
     "last_name": "Vibert",
     "email": "tvibert0@illinois.edu",
   },
@@ -172,4 +168,4 @@ addContacts([
   // addContact('debrena','mcewen','me@me.com')
 
 
-module.exports = { addContact, addContacts }
+module.exports = { addContact, addContacts, contactStorage }
